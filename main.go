@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 type Describable interface {
@@ -20,11 +19,11 @@ type Car struct {
 }
 
 func (p Person) Describe() string {
-	return "Hello, Im " + p.name + " " + strconv.FormatUint(uint64(p.age), 10) + " y.o."
+	return fmt.Sprintf("Hello, Im %s %d y.o.", p.name, p.age)
 }
 
 func (c Car) Describe() string {
-	return c.color + " wroom-wroom " + strconv.FormatUint(uint64(c.speed), 10)
+	return fmt.Sprintf("%s wroom-wroom %d", c.color, c.speed)
 }
 
 func PrintAll(descs ...Describable) {
@@ -42,5 +41,6 @@ func main() {
 	pers := Person{"Alex", 20}
 	Print(car)
 	Print(pers)
+	fmt.Println()
 	PrintAll(car, pers)
 }
